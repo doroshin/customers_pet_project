@@ -109,7 +109,6 @@ class LeadsController extends Controller
 
         if ($this->request->isPost) {
             $model->modified = time();
-
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }

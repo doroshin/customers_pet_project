@@ -89,13 +89,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
-                'attribute' => 'description',
-                'filterInputOptions' => [
-                    'placeholder' => 'Search for Description...',
-                    'class' => 'form-control'
-                ]
-            ],
-            [
                 'attribute' => 'created',
                 'format' =>  ['date', 'Y-MM-dd HH:mm (P)'],
                 'headerOptions' => ['style' => 'width:150px'],

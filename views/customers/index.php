@@ -37,14 +37,46 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'first_name',
-            'second_name',
-            'phone',
-            'address',
-            'email:email',
+//            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'attribute' => 'id',
+                'headerOptions' => ['style' => 'width:60px'],
+            ],
+            [
+                'attribute' => 'first_name',
+                'filterInputOptions' => [
+                    'placeholder' => 'Search for First Name...',
+                    'class' => 'form-control'
+                ]
+            ],
+            [
+                'attribute' => 'second_name',
+                'filterInputOptions' => [
+                    'placeholder' => 'Search for Second Name...',
+                    'class' => 'form-control'
+                ]
+            ],
+            [
+                'attribute' => 'phone',
+                'filterInputOptions' => [
+                    'placeholder' => 'Search for Phone...',
+                    'class' => 'form-control'
+                ]
+            ],
+            [
+                'attribute' => 'address',
+                'filterInputOptions' => [
+                    'placeholder' => 'Search for Address...',
+                    'class' => 'form-control'
+                ]
+            ],
+            [
+                'attribute' => 'email',
+                'filterInputOptions' => [
+                    'placeholder' => 'Search for Email...',
+                    'class' => 'form-control'
+                ]
+            ],
             [
                 'attribute' => 'status',
                 'format' => 'raw',
@@ -57,7 +89,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'parent_id',
-            'description',
             [
                 'attribute' => 'created',
                 'format' =>  ['date', 'Y-MM-dd HH:mm (P)'],

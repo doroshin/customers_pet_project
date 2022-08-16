@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\validators\EmailValidator;
+use yii\validators\NumberValidator;
 
 /**
  * This is the model class for table "customers".
@@ -42,6 +44,8 @@ class Customers extends \yii\db\ActiveRecord
             [['first_name', 'second_name'], 'string', 'max' => 50],
             [['phone', 'email'], 'string', 'max' => 100],
             [['address', 'description'], 'string', 'max' => 255],
+            ['email', 'checkCustomerEmailList'],
+            ['phone', 'checkCustomerPhoneList']
         ];
     }
 
@@ -65,11 +69,29 @@ class Customers extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function statuses()
+    /**
+     * @param $attribute
+     */
+    public function checkCustomerEmailList($attribute)
     {
-        return [
-            self::STATUS_ACTIVE => 'Active',
-            self::STATUS_INACTIVE => 'Inactive',
-        ];
+        $validator = new EmailValidator;
+        $emails = is_array($this->email)? : explode(', ', $this->email);
+
+        foreach ($emails as $email) {
+            $validator->validate($email)? : $this->addError($attribute, $email . " is not a valid email.");
+        }
+    }
+
+    /**
+     * @param $attribute
+     */
+    public function checkCustomerPhoneList($attribute)
+    {
+        $validator = new NumberValidator();
+        $phones = is_array($this->phone)? : explode(', ', $this->phone);
+
+        foreach ($phones as $phone) {
+            $validator->validate($phone)? : $this->addError($attribute, $phone . " is not a valid phone.");
+        }
     }
 }

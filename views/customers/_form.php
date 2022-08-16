@@ -1,6 +1,6 @@
 <?php
 
-use app\models\Customers;
+use app\components\Helper;
 use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -21,19 +21,23 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'second_name')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'phone')
+                ->textInput(['maxlength' => true, 'placeholder' => 'e.g. +380991231221, 64211685461'])
+                ->hint('You can enter a multiple phone numbers separated by comma and space.') ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'address')->textInput(['maxlength' => 255]) ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'email')
+                ->textInput(['maxlength' => true, 'placeholder' => 'e.g. user1@nomail.com, user2@monail.com'])
+                ->hint('You can enter a multiple email separated by comma and space.') ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($model, 'status')->widget(Select2::class, ['data' => Customers::statuses()]) ?>
+            <?= $form->field($model, 'status')->widget(Select2::class, ['data' => Helper::CustomersStatuses()]) ?>
         </div>
         <div class="col-md-12">
-            <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'description')->textInput(['maxlength' => 255]) ?>
         </div>
         <div class="form-group col-md-12">
             <?= Html::submitButton('Save', ['class' => 'btn btn-success float-right']) ?>

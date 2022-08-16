@@ -3,9 +3,9 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 use yii\validators\EmailValidator;
 use yii\validators\NumberValidator;
-use yii\validators\Phone;
 
 /**
  * This is the model class for table "leads".
@@ -21,7 +21,7 @@ use yii\validators\Phone;
  * @property int|null $created
  * @property int|null $modified
  */
-class Leads extends \yii\db\ActiveRecord
+class Leads extends ActiveRecord
 {
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
@@ -45,8 +45,8 @@ class Leads extends \yii\db\ActiveRecord
             [['phone', 'email'], 'string', 'max' => 100],
             [['address', 'description'], 'string', 'max' => 255],
             [['first_name', 'second_name', 'phone', 'address', 'email'], 'required'],
-            ['email', 'checkEmailList'],
-            ['phone', 'checkPhoneList']
+            ['email', 'checkLeadEmailList'],
+            ['phone', 'checkLeadPhoneList']
         ];
     }
 
@@ -69,18 +69,10 @@ class Leads extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function statuses()
-    {
-        return [
-            self::STATUS_ACTIVE => 'Active',
-            self::STATUS_INACTIVE => 'Inactive',
-        ];
-    }
-
     /**
      * @param $attribute
      */
-    public function checkEmailList($attribute)
+    public function checkLeadEmailList($attribute)
     {
         $validator = new EmailValidator;
         $emails = is_array($this->email)? : explode(', ', $this->email);
@@ -93,7 +85,7 @@ class Leads extends \yii\db\ActiveRecord
     /**
      * @param $attribute
      */
-    public function checkPhoneList($attribute)
+    public function checkLeadPhoneList($attribute)
     {
         $validator = new NumberValidator();
         $phones = is_array($this->phone)? : explode(', ', $this->phone);
