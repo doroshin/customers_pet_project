@@ -10,6 +10,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * LeadsController implements the CRUD actions for Leads model.
@@ -28,18 +29,8 @@ class LeadsController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
-                    ],
-                ],
-//                'access' => [
-//                    'class' => AccessControl::class,
-//                    'rules' => [
-//                        [
-//                            'allow' => true,
-//                            'actions' => ['get-parents-data'],
-//                            'roles' => ['@'],
-//                        ]
-//                    ]
-//                ]
+                    ]
+                ]
             ]
         );
     }
@@ -149,6 +140,12 @@ class LeadsController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    /**
+     * Creating Customer model based on current Lead model.
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     */
     public function actionConvertToCustomer($id)
     {
         $model = $this->findModel($id);
@@ -174,10 +171,12 @@ class LeadsController extends Controller
         ]);
     }
 
+    /** Returns Leads model by 'id'
+     * @return false|string
+     */
     public function actionGetParentsData()
     {
-        $id = yii::$app->request->post('id');
-        $model = Leads::find()->where(['id' => $id])->asArray()->one();
-        return json_encode($model);
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return Leads::find()->where(['id' => yii::$app->request->post('id')])->asArray()->one();
     }
 }

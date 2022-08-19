@@ -10,7 +10,7 @@ class Helper
     /**
      * @return array
      */
-    public static function LeadsStatuses()
+    public static function leadsStatuses()
     {
         return [
             Leads::STATUS_ACTIVE => 'Active',
@@ -21,7 +21,7 @@ class Helper
     /**
      * @return array
      */
-    public static function CustomersStatuses()
+    public static function customersStatuses()
     {
         return [
             Customers::STATUS_ACTIVE => 'Active',

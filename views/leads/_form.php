@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
                 ->hint('You can enter a multiple email separated by comma and space.') ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($model, 'status')->widget(Select2::class, ['data' => Helper::LeadsStatuses()]) ?>
+            <?= $form->field($model, 'status')->widget(Select2::class, ['data' => Helper::leadsStatuses()]) ?>
         </div>
         <div class="col-md-12">
             <?= $form->field($model, 'description')->textInput(['maxlength' => 255]) ?>
