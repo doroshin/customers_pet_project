@@ -18,8 +18,8 @@ use yii\validators\NumberValidator;
  * @property int|null $status
  * @property int|null $parent_id
  * @property string|null $description
- * @property int|null $created
- * @property int|null $modified
+ * @property int|null $created_at
+ * @property int|null $modified_at
  */
 class Customers extends \yii\db\ActiveRecord
 {
@@ -40,7 +40,7 @@ class Customers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'parent_id', 'created', 'modified'], 'integer'],
+            [['status', 'parent_id', 'created_at', 'modified_at'], 'integer'],
             [['first_name', 'second_name'], 'string', 'max' => 50],
             [['phone', 'email'], 'string', 'max' => 100],
             [['address', 'description'], 'string', 'max' => 255],
@@ -64,8 +64,8 @@ class Customers extends \yii\db\ActiveRecord
             'status' => 'Status',
             'parent_id' => 'Parent ID',
             'description' => 'Description',
-            'created' => 'Created',
-            'modified' => 'Modified',
+            'created_at' => 'Created',
+            'modified_at' => 'Modified',
         ];
     }
 

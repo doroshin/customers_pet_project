@@ -18,7 +18,7 @@ class LeadsSearch extends Leads
     {
         return [
             [['id', 'status'], 'integer'],
-            [['first_name', 'second_name', 'phone', 'address', 'email', 'description', 'created', 'modified'], 'safe'],
+            [['first_name', 'second_name', 'phone', 'address', 'email', 'description', 'created_at', 'modified_at'], 'safe'],
         ];
     }
 
@@ -56,24 +56,24 @@ class LeadsSearch extends Leads
             return $dataProvider;
         }
 
-        if (!empty($this->created) && strpos($this->created, ' - ') !== false ) {
-            list($start_date, $end_date) = explode(' - ', $this->created);
+        if (!empty($this->created_at) && strpos($this->created_at, ' - ') !== false ) {
+            list($start_date, $end_date) = explode(' - ', $this->created_at);
             $start_timestamp = strtotime($start_date);
             $end_timestamp = strtotime($end_date);
             if($start_date==$end_date){
                 $end_timestamp+=86400;
             }
-            $query->andFilterWhere(['between', 'leads.created', $start_timestamp, $end_timestamp]);
+            $query->andFilterWhere(['between', 'leads.created_at', $start_timestamp, $end_timestamp]);
         }
 
-        if (!empty($this->modified) && strpos($this->modified, ' - ') !== false ) {
-            list($start_date, $end_date) = explode(' - ', $this->modified);
+        if (!empty($this->modified_at) && strpos($this->modified_at, ' - ') !== false ) {
+            list($start_date, $end_date) = explode(' - ', $this->modified_at);
             $start_timestamp = strtotime($start_date);
             $end_timestamp = strtotime($end_date);
             if($start_date==$end_date){
                 $end_timestamp+=86400;
             }
-            $query->andFilterWhere(['between', 'leads.modified', $start_timestamp, $end_timestamp]);
+            $query->andFilterWhere(['between', 'leads.modified_at', $start_timestamp, $end_timestamp]);
         }
 
         // grid filtering conditions

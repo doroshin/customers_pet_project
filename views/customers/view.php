@@ -45,11 +45,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'description',
             [
-                'attribute' => 'created',
+                'attribute' => 'created_at',
                 'format' => ['date', 'Y-MM-dd HH:mm (P)'],
             ],
             [
-                'attribute' => 'modified',
+                'attribute' => 'modified_at',
                 'format' => ['date', 'Y-MM-dd HH:mm (P)'],
             ],
         ],
@@ -83,7 +83,7 @@ $(document).on('click', '#search_parent_btn', function (e) {
             $('#parent_block').empty();
             var parentTable = '<h5>Lead`s info</h5><table name="oop" class="table table-striped table-bordered">';
             for(var key in data){
-                if(key === 'created' || key === 'modified'){
+                if(key === 'created_at' || key === 'modified_at'){
                     data[key] = new Date(data[key] * 1000).toISOString().slice(0, 10) + ' (timestamp: ' + data[key] + ')';
                 } else if(key === 'status'){
                     data[key] = data[key] === '1' ? 'Active' : 'Inactive';

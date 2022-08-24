@@ -14,16 +14,16 @@ class m220809_120313_create_customers_table extends Migration
     {
         $this->createTable('{{%customers}}', [
             'id' => $this->primaryKey(),
-            'first_name' => $this->string(50)->null(),
-            'second_name' => $this->string(50)->null(),
-            'phone' => $this->string(100)->null(),
-            'address' => $this->string(255)->null(),
-            'email' => $this->string(100)->null(),
+            'first_name' => $this->string(50),
+            'second_name' => $this->string(50),
+            'phone' => $this->string(100),
+            'address' => $this->string(255),
+            'email' => $this->string(100),
             'status' => $this->integer(1)->null()->defaultValue(0),
-            'parent_id' => $this->integer()->null(),
-            'description' => $this->string(255)->null(),
-            'created' => $this->integer(11)->null(),
-            'modified' => $this->integer(11)->null()
+            'parent_id' => $this->integer(),
+            'description' => $this->string(255),
+            'created_at' => $this->integer(11)->notNull(),
+            'modified_at' => $this->integer(11)
         ]);
     }
 

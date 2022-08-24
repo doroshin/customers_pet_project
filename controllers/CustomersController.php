@@ -70,7 +70,7 @@ class CustomersController extends Controller
         $model = new Customers();
 
         if ($this->request->isPost) {
-            $model->created = time();
+            $model->created_at = time();
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -95,7 +95,7 @@ class CustomersController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost) {
-            $model->modified = time();
+            $model->modified_at = time();
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }

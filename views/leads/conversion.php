@@ -1,5 +1,6 @@
 <?php
 
+use app\components\Helper;
 use app\models\Leads;
 use kartik\select2\Select2;
 use yii\helpers\Html;
@@ -37,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($model, 'status')->widget(Select2::class, ['data' => Leads::statuses()]) ?>
+            <?= $form->field($model, 'status')->widget(Select2::class, ['data' => Helper::leadsStatuses()]) ?>
         </div>
         <div class="col-md-12">
             <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>

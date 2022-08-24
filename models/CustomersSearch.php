@@ -17,7 +17,7 @@ class CustomersSearch extends Customers
     public function rules()
     {
         return [
-            [['id', 'status', 'parent_id', 'created', 'modified'], 'integer'],
+            [['id', 'status', 'parent_id', 'created_at', 'modified_at'], 'integer'],
             [['first_name', 'second_name', 'phone', 'address', 'email', 'description'], 'safe'],
         ];
     }
@@ -61,8 +61,8 @@ class CustomersSearch extends Customers
             'id' => $this->id,
             'status' => $this->status,
             'parent_id' => $this->parent_id,
-            'created' => $this->created,
-            'modified' => $this->modified,
+            'created_at' => $this->created_at,
+            'modified_at' => $this->modified_at,
         ]);
 
         $query->andFilterWhere(['like', 'first_name', $this->first_name])

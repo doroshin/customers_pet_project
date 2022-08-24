@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\db\ActiveRecord;
 use yii\validators\EmailValidator;
 use yii\validators\NumberValidator;
@@ -18,8 +17,8 @@ use yii\validators\NumberValidator;
  * @property string|null $email
  * @property int|null $status
  * @property string|null $description
- * @property int|null $created
- * @property int|null $modified
+ * @property int|null $created_at
+ * @property int|null $modified_at
  */
 class Leads extends ActiveRecord
 {
@@ -40,7 +39,7 @@ class Leads extends ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'created', 'modified'], 'integer'],
+            [['status', 'created_at', 'modified_at'], 'integer'],
             [['first_name', 'second_name'], 'string', 'max' => 50],
             [['phone', 'email'], 'string', 'max' => 100],
             [['address', 'description'], 'string', 'max' => 255],
@@ -64,8 +63,8 @@ class Leads extends ActiveRecord
             'email' => 'Email',
             'status' => 'Status',
             'description' => 'Description',
-            'created' => 'Created',
-            'modified' => 'Modified',
+            'created_at' => 'Created',
+            'modified_at' => 'Modified',
         ];
     }
 

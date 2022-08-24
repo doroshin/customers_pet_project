@@ -90,12 +90,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'parent_id',
             [
-                'attribute' => 'created',
+                'attribute' => 'created_at',
                 'format' =>  ['date', 'Y-MM-dd HH:mm (P)'],
                 'headerOptions' => ['style' => 'width:150px'],
                 'filter'=>DateRangePicker::widget([
                     'model' => $searchModel,
-                    'attribute' => 'created',
+                    'attribute' => 'created_at',
                     'convertFormat' => true,
                     'options' => [
                         'placeholder' => 'Click to search...',
@@ -111,12 +111,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 ])
             ],
             [
-                'attribute' => 'modified',
+                'attribute' => 'modified_at',
                 'format' =>  ['date', 'Y-MM-dd HH:mm (P)'],
                 'headerOptions' => ['style' => 'width:150px'],
                 'filter'=>DateRangePicker::widget([
                     'model' => $searchModel,
-                    'attribute' => 'modified',
+                    'attribute' => 'modified_at',
                     'convertFormat' => true,
                     'options' => [
                         'placeholder' => 'Click to search...',

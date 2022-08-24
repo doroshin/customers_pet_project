@@ -6,7 +6,6 @@ use app\models\Customers;
 use app\models\Leads;
 use app\models\LeadsSearch;
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -74,7 +73,7 @@ class LeadsController extends Controller
         $model = new Leads();
 
         if ($this->request->isPost) {
-            $model->created = time();
+            $model->created_at = time();
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -99,7 +98,7 @@ class LeadsController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost) {
-            $model->modified = time();
+            $model->modified_at = time();
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -160,7 +159,7 @@ class LeadsController extends Controller
             $customer->status = $model->status;
             $customer->parent_id = $model->id;
             $customer->description = $model->description;
-            $customer->created = time();
+            $customer->created_at = time();
             if ($model->load($this->request->post()) && $customer->save()) {
                 return $this->redirect(['customers/view', 'id' => $customer->id]);
             }
